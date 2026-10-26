@@ -1,0 +1,9 @@
+#!/bin/bash
+# docker.io/library/alpine@sha256:d858bb5442632a31bd4bca6c5e601dbe6b536fd7942092ea6a08a0a95805693c
+# alpine-3.23.5-d858bb544263-8aa9ccd6504e
+# thlntfs-alpine-v1|tag=3.23.5|digest=sha256:d858bb5442632a31bd4bca6c5e601dbe6b536fd7942092ea6a08a0a95805693c|anylinuxfs=8aa9ccd6504e64ca26ce769c1623ed1741c6b7d3
+if [[ "${1:-}" == "--version" ]]; then
+  echo "anylinuxfs 0.18.0"
+  exit 0
+fi
+exit 0

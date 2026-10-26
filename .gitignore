@@ -1,0 +1,46 @@
+# Build artifacts — never commit vendored kernels/rootfs
+vendor/kernel/
+vendor/rootfs/
+
+# Distribution artifacts
+*.dmg
+/dist/
+
+# macOS
+.DS_Store
+
+# Rust
+target/
+Cargo.lock.bak
+
+# Go
+/build/build-gvproxy/bin/
+/build/.cache/
+
+# Swift
+.build/
+*.xcodeproj/xcuserdata/
+DerivedData/
+
+# Editors
+.vscode/
+.idea/
+
+# Local Dev & Testing (Do not commit to remote)
+tests/
+scripts/
+PRD/
+docs/audits/
+docs/dev/
+docs/testing/
+*.command
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+.pytest_cache/
+
+# graphify knowledge graph
+graphify-out/

@@ -1,0 +1,111 @@
+import SwiftUI
+import AppKit
+
+/// `ui/prototype.html`'s literal vibrancy/blur recipe (macOS Tahoe "Liquid Glass" comp), translated
+/// to `NSVisualEffectView` rather than the real `.glassEffect()` SwiftUI API — that API is
+/// macOS 26+ only and would silently force L7's macOS 13.0+ floor up (HARD-STOP territory, same
+/// reasoning `3-menubar-shell` already applied to `.symbolEffect(.pulse)`). `NSVisualEffectView`
+/// gets the closest available system-material approximation while staying 13.0-compatible; the
+/// comp's literal blur-radius/saturation/brightness CSS values aren't independently controllable
+/// through this API, only `.material`/`.blendingMode` are — documented here, not silently dropped.
+struct VisualEffectView: NSViewRepresentable {
+    var material: NSVisualEffectView.Material
+    var blendingMode: NSVisualEffectView.BlendingMode = .withinWindow
+
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        let view = NSVisualEffectView()
+        view.material = material
+        view.blendingMode = blendingMode
+        view.state = .active
+        return view
+    }
+
+    func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+        nsView.material = material
+        nsView.blendingMode = blendingMode
+    }
+}
+
+/// Popover background — `ui/prototype.html`'s dark+light "POPOVER" comps. Every state row
+/// (mounted/idle/dirty/error) shares this same container recipe; only per-state accent colors
+/// differ, handled elsewhere (`Colors.swift` + each state's own view). Literal: 13pt corner
+/// radius, 14% white(dark)/11% black(light) border, subtle tint gradient. The comp layers two
+/// box-shadows plus an inset rim-light per mode (`ui/prototype.html:107,288`) — SwiftUI's
+/// `.shadow()` only supports one outer shadow, so this collapses to a single approximation
+/// (dark: outer 0-22-56 layer only; light: outer 0-18-50 layer only), not full parity.
+struct PopoverGlassBackground: ViewModifier {
+    @Environment(\.colorScheme) private var colorScheme
+
+    func body(content: Content) -> some View {
+        content
+            .background(
+                ZStack {
+                    VisualEffectView(material: .popover)
+                    LinearGradient(
+                        colors: colorScheme == .dark
+                            ? [Color.white.opacity(0.055), Color.white.opacity(0.02)]
+                            : [Color.white.opacity(0.72), Color.white.opacity(0.58)],
+                        startPoint: .topLeading, endPoint: .bottomTrailing
+                    )
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 13, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 13, style: .continuous)
+                        .strokeBorder(colorScheme == .dark ? Color.white.opacity(0.14) : Color.black.opacity(0.11))
+                )
+                .shadow(
+                    color: .black.opacity(colorScheme == .dark ? 0.6 : 0.22),
+                    radius: colorScheme == .dark ? 28 : 25, y: colorScheme == .dark ? 22 : 18
+                )
+            )
+    }
+}
+
+/// Retained for public source compatibility with earlier embeddings. The production Settings
+/// page no longer uses this window-only treatment because it lives inside the popover.
+struct WindowGlassBackground: ViewModifier {
+    @Environment(\.colorScheme) private var colorScheme
+
+    func body(content: Content) -> some View {
+        content.background(
+            ZStack {
+                VisualEffectView(material: .windowBackground)
+                if colorScheme == .dark {
+                    Color.ntfsGlassDarkBase.opacity(0.72)
+                }
+            }
+        )
+    }
+}
+
+/// Settings row card — `ui/prototype.html`'s "Row:" comps: `rgba(255,255,255,0.05)` fill,
+/// `rgba(255,255,255,0.08)` border, 10pt radius (dark only shown in the comp; light follows the
+/// same white-alpha→black-alpha substitution the mounted-state dark/light pair already
+/// establishes throughout the rest of the comp, not a new invented value).
+struct GlassCard: ViewModifier {
+    @Environment(\.colorScheme) private var colorScheme
+
+    func body(content: Content) -> some View {
+        content
+            .padding(.horizontal, 14)
+            .padding(.vertical, 11)
+            .background(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(colorScheme == .dark ? Color.white.opacity(0.05) : Color.black.opacity(0.04))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .strokeBorder(colorScheme == .dark ? Color.white.opacity(0.08) : Color.black.opacity(0.07))
+            )
+    }
+}
+
+public extension View {
+    /// Menu-bar popover container glass — apply once at the popover content root.
+    func popoverGlassBackground() -> some View { modifier(PopoverGlassBackground()) }
+    /// Compatibility-only window treatment; thlntfs itself no longer opens a Settings window.
+    @available(*, deprecated, message: "Settings is now presented inside the popover")
+    func windowGlassBackground() -> some View { modifier(WindowGlassBackground()) }
+    /// One Settings row's card chrome.
+    func glassCard() -> some View { modifier(GlassCard()) }
+}

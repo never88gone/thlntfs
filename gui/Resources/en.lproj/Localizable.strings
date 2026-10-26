@@ -1,0 +1,314 @@
+/* THLNTFS English Localization Resource File */
+
+/* Application Name and Main Window */
+"app_name" = "THLNTFS";
+"main_window_title" = "THLNTFS Disk Manager";
+"open_main_window" = "Open Main Window";
+
+/* Common Actions & Buttons */
+"refresh" = "Refresh";
+"diagnose" = "Diagnose";
+"quit" = "Quit";
+"back" = "Back";
+"settings" = "Settings";
+"cancel" = "Cancel";
+"retry" = "Retry";
+"mount" = "Mount (Read/Write)";
+"quick_mount" = "Mount";
+"unmount" = "Unmount";
+"mount_anyway" = "Mount read/write anyway…";
+"open_in_finder" = "Open in Finder";
+"verify_and_repair" = "Verify & Repair";
+"erase" = "Erase";
+"set_startup_disk" = "Set as Startup Disk";
+
+/* Menu Bar Status */
+"no_drives_found" = "No drives found";
+"drives_detected_format" = "%d drive(s) detected";
+"mounting" = "Mounting…";
+"mounted_read_write" = "Mounted read/write";
+"mounted_read_only" = "Mounted read-only";
+"mount_verification_needed" = "Mount state needs verification";
+"error" = "Error";
+
+/* Menu Bar Empty State & Devices */
+"empty_state_title" = "No NTFS / ext drives connected";
+"empty_state_subtitle" = "Connect an NTFS or ext drive to\nget started";
+"other_available_devices" = "Other available devices";
+
+/* Dirty Journal Warning & Dialog */
+"dirty_warning_title" = "Unclean journal detected";
+"dirty_warning_banner" = "Mounted read-only — drive has an unclean journal. Eject safely in Windows to enable writing.";
+"dirty_risk_copy" = "Mounting a drive with an unclean journal read/write risks data corruption. Only continue if you understand the risk.";
+"dirty_confirm_dialog_title" = "Mount read/write anyway?";
+"dirty_confirm_action" = "Mount Read/Write";
+
+/* Helper Tool & Setup */
+"setup_required" = "Setup required";
+"setup_incomplete" = "Setup incomplete";
+"checking_helper" = "Checking privileged helper…";
+"waiting_for_auth" = "Waiting for authorization…";
+"helper_not_installed" = "Privileged helper not installed";
+"helper_installed" = "Privileged helper installed";
+"install_helper_button" = "Install Helper…";
+"staging_default_failure" = "Finishing setup automatically — this only takes a moment. If it doesn't clear on its own, click Retry.";
+
+/* Full Disk Access */
+"fda_required_title" = "Full Disk Access Required";
+"fda_required_subtitle" = "THLNTFS needs permission to mount and read NTFS drives.";
+"fda_open_settings" = "Open System Settings";
+
+/* Preferences Tabs & Sections */
+"general" = "General";
+"driver_performance" = "Driver & Performance";
+"security_isolation" = "Security & Isolation";
+"diagnostics_about" = "Diagnostics & About";
+
+/* Language Settings */
+"language_section" = "Interface Language";
+"language_title" = "App Display Language";
+"language_subtitle" = "Select display language for main window and settings";
+"lang_system" = "System Default";
+"lang_english" = "English";
+"lang_chinese" = "Simplified Chinese";
+
+/* Preferences Items & Actions */
+"launch_at_login" = "Launch at login";
+"launch_at_login_subtitle" = "Start THLNTFS helper automatically on login";
+"reinstall_helper" = "Reinstall privileged helper";
+"reinstall_helper_subtitle" = "Repair the SMJobBless XPC helper";
+"reinstall_button" = "Reinstall…";
+
+/* Uninstall */
+"uninstall_title" = "Uninstall THLNTFS";
+"uninstall_subtitle_idle" = "Remove the CLI, dependencies, and this helper — no leftovers";
+"uninstall_subtitle_removing_deps" = "Removing CLI and dependencies…";
+"uninstall_subtitle_removing_helper" = "Removing privileged helper…";
+"uninstall_subtitle_done" = "Uninstalled. Safe to drag THLNTFS to the Trash.";
+"uninstall_subtitle_failed_format" = "Failed: %@";
+"uninstall_button" = "Uninstall…";
+"uninstall_confirm_title" = "Uninstall THLNTFS completely?";
+"uninstall_confirm_message" = "Removes the CLI, all vendored dependencies, and this privileged helper. Afterward, you can drag THLNTFS to the Trash. This can't be undone.";
+"uninstall_confirm_action" = "Uninstall Everything";
+
+/* Sidebar & Disk Groups */
+"group_ntfs_volumes" = "NTFS Volumes";
+"group_other_external" = "Other External Volumes";
+"group_internal_disks" = "Internal Disks";
+"search_disks_placeholder" = "Search volume label or device (e.g. WIN10, disk4)...";
+"status_unmounted" = "Unmounted";
+"status_read_only" = "Read-only";
+"status_read_write" = "Read/Write";
+"status_dirty" = "Dirty";
+
+/* Main Window Empty Selection */
+"no_volume_selected_title" = "No Volume Selected";
+"no_volume_selected_subtitle" = "Select an NTFS external disk, USB drive, or partition in the sidebar to view spatial topology and manage read/write access.";
+"refresh_hint" = "Tip: Press ⌘R or click refresh to scan drives";
+
+/* Volume Detail Header & Status */
+"status_dirty_readonly" = "Unclean Journal (Read-only)";
+"status_readonly_mounted" = "Mounted Read-only";
+"status_normal_rw" = "Read/Write";
+"volume_suffix" = "Volume";
+"rename_tooltip" = "Rename Volume Label";
+
+/* Storage Capacity Overview */
+"capacity_overview" = "Storage Capacity";
+"capacity_total" = "Total";
+"capacity_used" = "Used";
+"capacity_available" = "Available";
+"capacity_free" = "Free";
+
+/* Attributes & Hardware Parameters */
+"attr_title" = "Partition Attributes & Hardware Parameters";
+"attr_mount_point" = "Mount Point";
+"attr_device_identifier" = "Device Identifier";
+"attr_filesystem" = "Filesystem Type";
+"attr_volume_uuid" = "Volume UUID";
+"attr_sector_size" = "Sector Size";
+"attr_connection_bus" = "Connection Bus";
+"attr_access_permission" = "Access Permission";
+"attr_read_only_val" = "Read-only (Protected)";
+"attr_read_write_val" = "Read/Write";
+"attr_unmounted_val" = "Unmounted";
+
+/* Driver Allocation & Preferences */
+"pref_card_title" = "Driver & Mount Preferences";
+"pref_auto_mount" = "Auto-mount volume on connect";
+"pref_auto_mount_sub" = "Mount automatically in background when connected";
+"pref_readonly_mode" = "Always mount as read-only";
+"pref_readonly_mode_sub" = "Prevent accidental write or file tampering";
+"pref_spotlight_index" = "Allow Spotlight indexing";
+"pref_spotlight_index_sub" = "Disabling reduces background disk I/O and energy use";
+"pref_driver_engine" = "Preferred Driver Engine";
+
+/* Partition Map Topology */
+"part_map_title" = "Partition Map & Physical Layout";
+"part_type_efi" = "System Reserved / EFI";
+"part_type_primary" = "Primary Data";
+"part_type_unallocated" = "Unallocated Space";
+
+/* Real-time I/O Throughput */
+"io_throughput_title" = "Real-time I/O Throughput";
+"io_write_speed" = "Write Speed";
+"io_peak_read" = "Peak Read";
+"io_transferring" = "High-speed Transferring";
+"io_idle" = "Idle";
+
+/* Erase & Format Sheet */
+"erase_title_format" = "Erase and format \"%@\"?";
+"erase_warning_format" = "Erasing will permanently delete all files and data on \"/dev/%@\". Please ensure you have a backup.";
+"erase_new_name" = "New Volume Name:";
+"erase_filesystem" = "Filesystem:";
+"erase_fs_ntfs" = "NTFS (Windows NT Filesystem)";
+"erase_fs_exfat" = "exFAT (Extended FAT)";
+"erase_fs_fat32" = "FAT32 (Compatibility Mode)";
+"erase_cluster_size" = "Allocation Unit Size:";
+"erase_cluster_default" = "4096 Bytes (Default Recommended)";
+"erase_cluster_8k" = "8192 Bytes";
+"erase_cluster_16k" = "16 KB (Large File Optimization)";
+"erase_cluster_32k" = "32 KB";
+"erase_cluster_64k" = "64 KB (High-Speed Media)";
+"erase_quick_format" = "Enable Quick Format";
+"erase_button" = "Erase";
+"erase_done" = "Done";
+"erase_in_progress" = "Erasing...";
+
+/* First Aid Repair Sheet */
+"repair_title_format" = "First Aid Repair for \"%@\"?";
+"repair_subtitle" = "First Aid verifies NTFS metadata integrity, clears Windows fast-boot dirty journals, and repairs MFT records.";
+"repair_item_1_title" = "Clear Windows Fast Startup Dirty Journal";
+"repair_item_1_sub" = "Resolve protective read-only lock caused by unclean ejection in Windows";
+"repair_item_2_title" = "Verify Master File Table (MFT) & Mirrors";
+"repair_item_2_sub" = "Check and correct corrupted file index records and orphaned nodes";
+"repair_item_3_title" = "Check Cluster Bitmap & Free Space Allocation";
+"repair_item_3_sub" = "Correct inaccurate volume allocation statistics and cluster markers";
+"repair_start_button" = "Start First Aid";
+"repair_in_progress" = "Repairing...";
+"repair_done" = "Done";
+
+/* Rename Volume Sheet */
+"rename_sheet_title" = "Rename Volume";
+"rename_device_node_format" = "Device Node: /dev/%@ · %@";
+"rename_input_label" = "New Volume Name:";
+"rename_placeholder" = "Enter new volume label";
+"rename_hint" = "NTFS volume label supports letters, numbers, and symbols up to 32 characters.";
+"rename_confirm_button" = "Confirm Rename";
+"rename_char_count_format" = "%d/32 Characters";
+
+/* Startup Disk Sheet */
+"startup_sheet_title" = "Set as System Startup Disk";
+"startup_target_format" = "Target Partition: %@ · /dev/%@";
+"startup_detected_efi" = "Valid Windows EFI Bootloader Detected";
+"startup_efi_desc" = "The system detected an EFI bootloader on this volume. Once configured, your Mac will boot into Windows from this volume by default on next restart.";
+"startup_confirm_button" = "Set as Startup Disk";
+
+/* Preferences - Security Isolation Tab */
+"pref_security_title" = "Privileged Service & System Isolation";
+"pref_security_desc" = "Strictly conforms to Apple's SMJobBless specification with least privilege. Zero sudo elevation in frontend UI process.";
+"pref_helper_daemon_group" = "SMJobBless Privileged Helper Daemon";
+"pref_helper_running" = "Service running (Signed & Registered)";
+"pref_helper_installing" = "Registering & installing privileged service...";
+"pref_helper_ready" = "Privileged helper daemon ready";
+"pref_helper_not_installed" = "Not installed (Advanced features limited)";
+"pref_helper_waiting_auth" = "Waiting for authorization";
+"pref_helper_failed" = "Service registration failed";
+"pref_helper_denied" = "System authorization denied by user";
+"pref_install_register_btn" = "Install & Register Service";
+"pref_uninstall_helper_btn" = "Uninstall Service";
+"pref_net_isolation_title" = "Private Network Isolation & Host Protection";
+"pref_vmnet_title" = "vmnet-helper Private Host-Only Virtual Bridge";
+"pref_vmnet_desc" = "NFS data transfers are strictly isolated within 192.168.64.0/24 private subnet, never touching physical LAN";
+"pref_pf_title" = "macOS Packet Filter (pf) Dedicated Firewall Chain";
+"pref_pf_desc" = "Blocks external network interfaces from accessing microVM NFS ports, preventing unauthorized LAN sniffing";
+
+/* Preferences - Driver & Performance Tab */
+"driver_engine_group" = "Filesystem Driver Engine";
+"driver_fuse_name" = "ntfs-3g Userspace FUSE Driver";
+"driver_fuse_desc" = "Stable and proven userspace driver, data integrity prioritized, prevents undefined writes";
+"driver_fuse_badge" = "Stable & Safe";
+"driver_ntfs3_name" = "ntfs3 Kernel Driver Engine";
+"driver_ntfs3_desc" = "Linux 5.15+ native kernel driver mode, optimized for extreme sequential bandwidth";
+"driver_ntfs3_badge" = "High Performance";
+"nfs_buffer_tuning_group" = "NFS Channel & Buffer Tuning";
+"io_chunk_size" = "I/O Chunk Size (rsize / wsize)";
+"io_chunk_desc" = "Block size optimized for Apple Silicon Unified Memory Architecture";
+"chunk_64k" = "64 KB (Low Memory)";
+"chunk_128k" = "128 KB";
+"chunk_256k" = "256 KB (Recommended)";
+"chunk_512k" = "512 KB (Max Bandwidth)";
+"async_flush" = "Enable Asynchronous Batch Write (Async Flush)";
+"async_flush_desc" = "Coalesces small sequential writes into single physical I/O requests, significantly boosting photo and project transfer speeds";
+
+/* Preferences - Diagnostics & About Tab */
+"diag_group_title" = "Environment Health & Kernel Diagnostics";
+"diag_item_title" = "System Dependencies & Virtualization Check";
+"diag_item_desc" = "Verifies Apple Silicon architecture, microVM, Alpine runtime, network bridge, and macOS permissions";
+"diag_btn_run" = "Run Diagnostics";
+"diag_btn_running" = "Diagnosing...";
+"about_group_title" = "About THLNTFS";
+"about_app_name" = "THLNTFS for Mac";
+"about_version_desc" = "Version 1.2.0 · Apple Silicon Native Engine";
+"about_sip_desc" = "100% SIP Enabled (System Integrity Protection) · Zero KEXT";
+
+/* Preferences - General Tab */
+"system_integration_group" = "System Integration & Startup";
+"launch_at_login_title_full" = "Launch THLNTFS Helper at Login";
+"launch_at_login_sub_full" = "Runs quietly in menu bar on system login, providing instant hardware detection and automount";
+"auto_mount_group" = "Automation & Disk Events";
+"auto_mount_new_drives" = "Automatically Mount External NTFS Drives";
+"auto_mount_new_drives_sub" = "Newly inserted NTFS flash drives or hard drives will be automatically mounted read/write";
+"notifications_enabled" = "Show System Notifications";
+"notifications_enabled_sub" = "Display macOS banner notifications on mount, unmount, or dirty journal detection";
+"open_finder_on_mount" = "Open in Finder After Mounting";
+"open_finder_on_mount_sub" = "Immediately display the drive root directory in a new Finder window for easy browsing";
+"finder_integration_group" = "Finder Integration";
+
+/* Sidebar & Main Window Common Labels */
+"helper_service_ready" = "Privileged Service Ready";
+"helper_service_not_ready" = "Service Not Ready";
+"rescan_disks_hint" = "Rescan connected disks";
+"copy_to_clipboard" = "Copy to Clipboard";
+"copied" = "Copied";
+"pref_ignore_ownership" = "Ignore volume ownership";
+"pref_ignore_ownership_sub" = "Automatically matches current Mac user permissions, resolving permission errors when copying from Windows";
+"gpt_partition_table" = "GUID Partition Table (GPT)";
+
+/* Common Controls */
+"security_title" = "SECURITY";
+"hide" = "Hide";
+"show" = "Show";
+"diagnostics_panel_title" = "Diagnostics";
+
+/* Notifications System */
+"notify_mounted_title" = "NTFS Volume Mounted";
+"notify_mounted_body" = "\"%@\" has been mounted in %@ mode and is accessible in Finder.";
+"notify_unmounted_title" = "Drive Safely Removed";
+"notify_unmounted_body" = "\"%@\" has been unmounted. It is now safe to disconnect the cable.";
+"notify_dirty_title" = "⚠️ Unclean Windows Journal Detected";
+"notify_dirty_body" = "\"%@\" was not safely ejected in Windows. Mounted read-only to prevent corruption.";
+"notify_error_title" = "NTFS Mount Failed";
+"notify_error_body" = "An error occurred while mounting \"%@\": %@";
+
+/* Disk Advanced Operations & Logs */
+"startup_setting_in_progress" = "Setting \"%@\" as startup disk...";
+"startup_set_success" = "\"%@\" successfully set as startup disk. The system will boot from this volume on next restart.";
+"op_verifying_and_repairing" = "Verifying & repairing: %@";
+"op_log_start_fsck" = "Starting filesystem self-check on %@...";
+"op_log_check_journal" = "Checking NTFS journal state (Journal check)...";
+"op_log_dirty_detected" = "Detected Windows dirty journal flag (Volume is scheduled for check).";
+"op_log_resetting_flags" = "Resetting unclean volume flags...";
+"op_log_journal_clean" = "Journal is clean.";
+"op_log_verifying_mft" = "Verifying Master File Table (MFT) & cluster bitmap...";
+"op_log_fs_healthy" = "Filesystem verification complete. State: Healthy.";
+"op_erasing_and_formatting" = "Erasing & formatting: %@";
+"op_log_prepare_erase" = "Preparing to format %@ as NTFS...";
+"op_log_unmounting_existing" = "Unmounting existing mount point...";
+"op_log_writing_structures" = "Writing new NTFS filesystem structures (Cluster size: %d bytes, Quick: %@)...";
+"op_log_allocating_mft" = "Allocating Master File Table (MFT) space...";
+"op_log_setting_label" = "Setting volume label: %@...";
+"op_log_format_success" = "Format successful! Partition is ready.";
+"op_log_updating_label" = "Updating %@ label to %@...";
+
+

@@ -1,0 +1,314 @@
+/* THLNTFS 简体中文本地化资源文件 */
+
+/* 应用名称与主窗口 */
+"app_name" = "THLNTFS";
+"main_window_title" = "THLNTFS 磁盘管理";
+"open_main_window" = "打开主管理窗口";
+
+/* 常用动作与按钮 */
+"refresh" = "刷新";
+"diagnose" = "诊断";
+"quit" = "退出";
+"back" = "返回";
+"settings" = "偏好设置";
+"cancel" = "取消";
+"retry" = "重试";
+"mount" = "挂载 (读/写)";
+"quick_mount" = "挂载";
+"unmount" = "卸载";
+"mount_anyway" = "仍然以读写模式挂载…";
+"open_in_finder" = "在访达打开";
+"verify_and_repair" = "验证与修复";
+"erase" = "抹掉";
+"set_startup_disk" = "设为启动盘";
+
+/* 菜单栏状态 */
+"no_drives_found" = "未发现磁盘";
+"drives_detected_format" = "已检测到 %d 个磁盘";
+"mounting" = "正在挂载…";
+"mounted_read_write" = "已读写挂载";
+"mounted_read_only" = "已只读挂载";
+"mount_verification_needed" = "挂载状态待验证";
+"error" = "错误";
+
+/* 菜单栏空状态与设备列表 */
+"empty_state_title" = "未连接 NTFS / ext 磁盘";
+"empty_state_subtitle" = "连接 NTFS 或 ext 磁盘以开始使用";
+"other_available_devices" = "其他可用设备";
+
+/* 脏日志警告与弹窗 */
+"dirty_warning_title" = "检测到未正常卸载日志";
+"dirty_warning_banner" = "已作为只读模式挂载 — 磁盘存在未正常卸载的日志。在 Windows 中安全弹出以启用写入。";
+"dirty_risk_copy" = "强制以读写模式挂载存在未清除日志的磁盘可能导致数据损坏。请在充分了解风险后继续。";
+"dirty_confirm_dialog_title" = "确定仍然以读写模式挂载吗？";
+"dirty_confirm_action" = "以读写模式挂载";
+
+/* 帮助程序与初始化安装 */
+"setup_required" = "需要配置";
+"setup_incomplete" = "配置未完成";
+"checking_helper" = "正在检查特权辅助服务…";
+"waiting_for_auth" = "等待系统授权…";
+"helper_not_installed" = "特权辅助服务未安装";
+"helper_installed" = "特权辅助服务已就绪";
+"install_helper_button" = "安装帮助程序…";
+"staging_default_failure" = "正在自动完成初始化配置，这只需片刻。如果未自动恢复，请点击重试。";
+
+/* 完全磁盘访问权限引导 */
+"fda_required_title" = "需要完全磁盘访问权限";
+"fda_required_subtitle" = "THLNTFS 需要权限以挂载和读取 NTFS 分区。";
+"fda_open_settings" = "打开系统设置";
+
+/* 偏好设置选项卡与标题 */
+"general" = "常规";
+"driver_performance" = "驱动与性能";
+"security_isolation" = "安全与隔离";
+"diagnostics_about" = "诊断与关于";
+
+/* 语言偏好设置 */
+"language_section" = "界面语言与偏好";
+"language_title" = "应用界面语言";
+"language_subtitle" = "设置主界面、菜单栏助手与偏好设置的显示语言";
+"lang_system" = "跟随系统";
+"lang_english" = "英文 (English)";
+"lang_chinese" = "中文 (简体中文)";
+
+/* 偏好设置项与操作 */
+"launch_at_login" = "开机自动启动";
+"launch_at_login_subtitle" = "登录系统时自动启动 THLNTFS 助手";
+"reinstall_helper" = "重新安装特权辅助服务";
+"reinstall_helper_subtitle" = "修复 SMJobBless XPC 特权辅助守护进程";
+"reinstall_button" = "重新安装…";
+
+/* 卸载相关 */
+"uninstall_title" = "卸载 THLNTFS";
+"uninstall_subtitle_idle" = "移除命令行工具、后台依赖项与此特权服务 — 无任何残留";
+"uninstall_subtitle_removing_deps" = "正在移除后台依赖组件…";
+"uninstall_subtitle_removing_helper" = "正在移除特权辅助服务…";
+"uninstall_subtitle_done" = "已完全卸载。现在可以安全将 THLNTFS 移至废纸篓。";
+"uninstall_subtitle_failed_format" = "卸载失败: %@";
+"uninstall_button" = "卸载…";
+"uninstall_confirm_title" = "确定要完全卸载 THLNTFS 吗？";
+"uninstall_confirm_message" = "此操作将完全移除命令行工具、所有内置依赖项与特权服务。完成后您可以将应用移至废纸篓。此操作无法撤销。";
+"uninstall_confirm_action" = "确认完全卸载";
+
+/* 侧边栏与磁盘分组 */
+"group_ntfs_volumes" = "NTFS 卷";
+"group_other_external" = "其他外置卷";
+"group_internal_disks" = "内置磁盘";
+"search_disks_placeholder" = "搜索卷标或设备名 (如 WIN10, disk4)...";
+"status_unmounted" = "未挂载";
+"status_read_only" = "只读";
+"status_read_write" = "读/写";
+"status_dirty" = "脏";
+
+/* 主窗口空白选择页 */
+"no_volume_selected_title" = "未选定磁盘卷";
+"no_volume_selected_subtitle" = "请在左侧边栏列表中选择一个 NTFS 移动硬盘、U盘或数据分区，以查看空间拓扑并执行读写管理。";
+"refresh_hint" = "提示: 支持通过拖拽或快捷键 ⌘R 快速刷新驱动器状态";
+
+/* 卷详情头部与状态 */
+"status_dirty_readonly" = "脏日志保护 (只读)";
+"status_readonly_mounted" = "只读挂载";
+"status_normal_rw" = "正常读/写";
+"volume_suffix" = "卷";
+"rename_tooltip" = "重命名卷标";
+
+/* 存储容量概览 */
+"capacity_overview" = "存储容量概览";
+"capacity_total" = "总容量";
+"capacity_used" = "已用空间";
+"capacity_available" = "可用空间";
+"capacity_free" = "空闲";
+
+/* 详细属性与硬件参数 */
+"attr_title" = "分区详细属性与硬件参数";
+"attr_mount_point" = "挂载点";
+"attr_device_identifier" = "设备标识";
+"attr_filesystem" = "文件系统类型";
+"attr_volume_uuid" = "卷 UUID";
+"attr_sector_size" = "扇区大小";
+"attr_connection_bus" = "连接总线";
+"attr_access_permission" = "读写权限状态";
+"attr_read_only_val" = "只读 (受保护)";
+"attr_read_write_val" = "正常读/写";
+"attr_unmounted_val" = "未挂载";
+
+/* 驱动分配与挂载偏好 */
+"pref_card_title" = "驱动分配与装载偏好";
+"pref_auto_mount" = "连接时自动挂载此卷";
+"pref_auto_mount_sub" = "插入此磁盘时自动进行后台读写挂载";
+"pref_readonly_mode" = "始终以只读模式挂载";
+"pref_readonly_mode_sub" = "防止意外写入或文件篡改";
+"pref_spotlight_index" = "允许 macOS 建立 Spotlight 索引";
+"pref_spotlight_index_sub" = "停用可减少后台磁盘 I/O 磨损与能量消耗";
+"pref_driver_engine" = "首选文件系统驱动引擎";
+
+/* 分区地图拓扑图 */
+"part_map_title" = "磁盘分区地图与物理布局";
+"part_type_efi" = "系统保留 / EFI";
+"part_type_primary" = "主数据分区";
+"part_type_unallocated" = "未分配空间";
+
+/* 实时 I/O 吞吐量 */
+"io_throughput_title" = "实时 I/O 传输吞吐率";
+"io_write_speed" = "当前写入速率";
+"io_peak_read" = "峰值读取速率";
+"io_transferring" = "正在高速读写";
+"io_idle" = "空闲待机";
+
+/* 抹掉与格式化弹窗 */
+"erase_title_format" = "抹掉并格式化“%@”？";
+"erase_warning_format" = "抹掉操作将永久清除“/dev/%@”上的全部文件与数据，请务必提前做好备份。";
+"erase_new_name" = "新卷名称:";
+"erase_filesystem" = "文件系统:";
+"erase_fs_ntfs" = "NTFS (Windows NT 文件系统)";
+"erase_fs_exfat" = "exFAT (扩展 FAT)";
+"erase_fs_fat32" = "FAT32 (兼容模式)";
+"erase_cluster_size" = "分配单元大小:";
+"erase_cluster_default" = "4096 字节 (默认推荐)";
+"erase_cluster_8k" = "8192 字节";
+"erase_cluster_16k" = "16 KB (大文件优化)";
+"erase_cluster_32k" = "32 KB";
+"erase_cluster_64k" = "64 KB (音视频高速盘)";
+"erase_quick_format" = "启用快速格式化 (Quick Format)";
+"erase_button" = "抹掉";
+"erase_done" = "完成";
+"erase_in_progress" = "正在执行...";
+
+/* 文件系统急救修复弹窗 */
+"repair_title_format" = "急救修复“%@”？";
+"repair_subtitle" = "急救将检查 NTFS 文件系统元数据完整性、重置 Windows 快速启动脏日志并修复 MFT 索引记录。";
+"repair_item_1_title" = "清除 Windows 快速启动脏日志 (Dirty Journal)";
+"repair_item_1_sub" = "消除在 Windows 下未安全弹出导致的保护性只读锁定";
+"repair_item_2_title" = "验证主文件表 (MFT) 与镜像副本";
+"repair_item_2_sub" = "检查并纠正损坏的文件索引记录与孤立节点";
+"repair_item_3_title" = "检查簇位图与空闲空间分配";
+"repair_item_3_sub" = "纠正错误的磁盘空间统计与未分配簇标记";
+"repair_start_button" = "开始急救修复";
+"repair_in_progress" = "正在修复...";
+"repair_done" = "完成";
+
+/* 卷标重命名弹窗 */
+"rename_sheet_title" = "重命名卷标";
+"rename_device_node_format" = "设备节点: /dev/%@ · %@";
+"rename_input_label" = "新卷标名称:";
+"rename_placeholder" = "输入新卷标名称";
+"rename_hint" = "NTFS 卷标支持中英文、数字与大部分特殊字符，最大长度为 32 个字符。";
+"rename_confirm_button" = "确认重命名";
+"rename_char_count_format" = "%d/32 字符";
+
+/* Windows 启动盘弹窗 */
+"startup_sheet_title" = "设为系统启动磁盘";
+"startup_target_format" = "目标分区: %@ · /dev/%@";
+"startup_detected_efi" = "已检测到有效的 Windows EFI 引导文件";
+"startup_efi_desc" = "系统检测到该卷包含 EFI\\Microsoft\\Boot\\bootmgfw.efi 引导加载程序。配置后，下次重启或开机时 Mac 将默认从此分区引导 Windows 操作系统。";
+"startup_confirm_button" = "设为启动磁盘";
+
+/* 偏好设置 - 安全隔离选项卡 */
+"pref_security_title" = "特权服务与系统安全隔离";
+"pref_security_desc" = "严格遵循 Apple 官方 SMJobBless 规范，仅执行最小特权调用，前端 UI 主进程零 sudo 提权，确保宿主安全。";
+"pref_helper_daemon_group" = "SMJobBless 特权辅助守护进程";
+"pref_helper_running" = "服务运行中 (已签名注册)";
+"pref_helper_installing" = "正在注册安装特权服务...";
+"pref_helper_ready" = "特权辅助守护进程已就绪";
+"pref_helper_not_installed" = "未安装 (部分高级挂载功能受限)";
+"pref_helper_waiting_auth" = "等待系统授权";
+"pref_helper_failed" = "特权服务注册失败";
+"pref_helper_denied" = "用户拒绝系统授权";
+"pref_install_register_btn" = "安装并注册服务";
+"pref_uninstall_helper_btn" = "卸载特权服务";
+"pref_net_isolation_title" = "私有网络隔离与宿主机防护";
+"pref_vmnet_title" = "vmnet-helper 私有 Host-Only 虚拟网桥";
+"pref_vmnet_desc" = "NFS 数据传输严格限定在 192.168.64.0/24 隔离私有虚拟网段，不经过外部物理局域网";
+"pref_pf_title" = "macOS Packet Filter (pf) 防火墙专属防护链";
+"pref_pf_desc" = "精准阻止任何外部网络接口访问 microVM 的 NFS 端口，杜绝未授权局域网数据监听";
+
+/* 偏好设置 - 驱动性能选项卡 */
+"driver_engine_group" = "文件系统驱动引擎选择";
+"driver_fuse_name" = "ntfs-3g 用户态 FUSE 驱动引擎";
+"driver_fuse_desc" = "成熟稳定的用户态兼容驱动，数据一致性优先，杜绝未定义写入";
+"driver_fuse_badge" = "稳定安全";
+"driver_ntfs3_name" = "ntfs3 内核驱动引擎";
+"driver_ntfs3_desc" = "Linux 5.15+ 原生内核驱动模式，极致连续吞吐带宽优化";
+"driver_ntfs3_badge" = "高速性能";
+"nfs_buffer_tuning_group" = "NFS 传输通道与缓冲区调优";
+"io_chunk_size" = "I/O 读写块大小 (rsize / wsize)";
+"io_chunk_desc" = "针对 Apple Silicon 统一内存架构调优的数据分块大小";
+"chunk_64k" = "64 KB (低内存)";
+"chunk_128k" = "128 KB";
+"chunk_256k" = "256 KB (推荐)";
+"chunk_512k" = "512 KB (极限带宽)";
+"async_flush" = "启用异步批量写入合并 (Async Flush)";
+"async_flush_desc" = "将零碎小文件连续写入合并为单次物理 I/O，显著提升照片与工程文件拷贝速度";
+
+/* 偏好设置 - 诊断与关于选项卡 */
+"diag_group_title" = "环境自检与内核健康诊断";
+"diag_item_title" = "系统依赖与虚拟化环境自检";
+"diag_item_desc" = "全面检查 Apple Silicon 架构、microVM、Alpine 运行时、网络网桥与 macOS 权限";
+"diag_btn_run" = "运行自检";
+"diag_btn_running" = "正在诊断...";
+"about_group_title" = "关于 THLNTFS";
+"about_app_name" = "THLNTFS for Mac";
+"about_version_desc" = "版本 1.2.0 · Apple Silicon 架构原生引擎";
+"about_sip_desc" = "100% 开启 SIP (System Integrity Protection) · 零 KEXT 内核扩展";
+
+/* 偏好设置 - 常规选项卡 */
+"system_integration_group" = "系统集成与开机启动";
+"launch_at_login_title_full" = "开机自动启动 THLNTFS 助手";
+"launch_at_login_sub_full" = "系统登录时在顶部菜单栏常驻运行，提供即时硬件感知与自动挂载";
+"auto_mount_group" = "自动化与磁盘事件";
+"auto_mount_new_drives" = "插入外部 NTFS 磁盘时自动挂载";
+"auto_mount_new_drives_sub" = "新插入的 NTFS U盘或移动硬盘将自动以读写模式就绪";
+"notifications_enabled" = "显示挂载与状态系统通知";
+"notifications_enabled_sub" = "挂载就绪、卸载成功或检测到脏日志时弹出 macOS 横幅通知";
+"open_finder_on_mount" = "挂载成功后自动在访达中打开";
+"open_finder_on_mount_sub" = "在访达新窗口中立即展示该磁盘根目录，方便浏览文件";
+"finder_integration_group" = "访达 (Finder) 交互集成";
+
+/* 侧边栏与主窗口通用文案 */
+"helper_service_ready" = "特权服务就绪";
+"helper_service_not_ready" = "服务未就绪";
+"rescan_disks_hint" = "重新扫描连接的磁盘";
+"copy_to_clipboard" = "复制到剪贴板";
+"copied" = "已复制";
+"pref_ignore_ownership" = "忽略卷所有权";
+"pref_ignore_ownership_sub" = "自动匹配当前登录的 Mac 用户读写权限，解决从 Windows 拷入文件的权限报错";
+"gpt_partition_table" = "GUID 分区表 (GPT)";
+
+/* 通用控制 */
+"security_title" = "安全与防护";
+"hide" = "隐藏";
+"show" = "展开";
+"diagnostics_panel_title" = "系统诊断报告";
+
+/* 通知系统 */
+"notify_mounted_title" = "NTFS 卷已挂载";
+"notify_mounted_body" = "“%@”已成功以%@模式挂载，现可在访达中访问。";
+"notify_unmounted_title" = "驱动器已安全移除";
+"notify_unmounted_body" = "“%@”已成功卸载，现在可以安全拔出物理连接线缆。";
+"notify_dirty_title" = "⚠️ 检测到 Windows 脏日志";
+"notify_dirty_body" = "“%@”未在 Windows 中正常弹出。为防数据损坏，已自动保护性挂载为只读。";
+"notify_error_title" = "NTFS 挂载失败";
+"notify_error_body" = "挂载“%@”时发生错误：%@";
+
+/* 磁盘高级操作日志与状态 */
+"startup_setting_in_progress" = "正在设置“%@”为启动盘...";
+"startup_set_success" = "“%@”已成功设置为启动盘。下次重新启动系统时将从此分区引导。";
+"op_verifying_and_repairing" = "正在验证与修复: %@";
+"op_log_start_fsck" = "开始对 %@ 进行文件系统自检...";
+"op_log_check_journal" = "正在检查 NTFS 日志状态 (Journal check)...";
+"op_log_dirty_detected" = "检测到 Windows 脏日志标记 (Volume is scheduled for check).";
+"op_log_resetting_flags" = "正在重置未清理的卷脏标记 (Resetting unclean volume flags)...";
+"op_log_journal_clean" = "卷日志状态清洁 (Journal is clean).";
+"op_log_verifying_mft" = "正在验证主文件表 (MFT) 与簇位图...";
+"op_log_fs_healthy" = "文件系统验证完成，状态健康。";
+"op_erasing_and_formatting" = "正在抹掉并格式化: %@";
+"op_log_prepare_erase" = "准备将 %@ 格式化为 NTFS...";
+"op_log_unmounting_existing" = "卸载现有分区装载点...";
+"op_log_writing_structures" = "正在写入新的 NTFS 文件系统结构 (簇大小: %d 字节, 快速: %@)...";
+"op_log_allocating_mft" = "分配主文件表 (MFT) 空间...";
+"op_log_setting_label" = "设置卷标: %@...";
+"op_log_format_success" = "格式化成功！分区已就绪。";
+"op_log_updating_label" = "正在更新 %@ 卷标为 %@...";
+
+

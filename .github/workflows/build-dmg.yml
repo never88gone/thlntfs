@@ -1,0 +1,78 @@
+name: Build and Package DMG
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-package:
+    name: Build THLNTFS DMG
+    runs-on: macos-14
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode 16
+        run: |
+          if [ -d "/Applications/Xcode_16.0.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_16.0.app
+          elif [ -d "/Applications/Xcode_16.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_16.app
+          elif [ -d "/Applications/Xcode_16.1.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_16.1.app
+          fi
+          xcode-select -p
+          swift --version
+
+      - name: Package App (.app)
+        run: |
+          chmod +x build/*.sh
+          ./build/package-app.sh
+
+      - name: Create DMG (.dmg)
+        run: |
+          ./build/make-dmg.sh
+
+      - name: Verify & Compute Checksum
+        run: |
+          ls -lh dist/
+          shasum -a 256 dist/THLNTFS.dmg > dist/THLNTFS.dmg.sha256
+          cat dist/THLNTFS.dmg.sha256
+
+      - name: Upload DMG Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: THLNTFS-v1.0.0-macOS
+          path: |
+            dist/THLNTFS.dmg
+            dist/THLNTFS.dmg.sha256
+          retention-days: 30
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/THLNTFS.dmg
+            dist/THLNTFS.dmg.sha256
+          name: THLNTFS ${{ github.ref_name }}
+          body: |
+            ## THLNTFS for Mac ${{ github.ref_name }}
+            
+            现代化高能级 NTFS 与 Linux 外置磁盘管理系统（Apple Silicon 原生，100% 保持 SIP 安全保护开启）。
+            
+            ### 📦 下载与安装
+            - 下载下方挂载镜像 `THLNTFS.dmg` 并拖入 `Applications` 应用程序文件夹；
+            - 首次启动时右键点击 `THLNTFS.app` 选择“打开”；
+            - 按照指引授权特权辅助工具即可即插即用。
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
