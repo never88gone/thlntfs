@@ -249,8 +249,11 @@
 "diag_btn_running" = "正在诊断...";
 "about_group_title" = "关于 THLNTFS";
 "about_app_name" = "THLNTFS for Mac";
-"about_version_desc" = "版本 1.2.0 · Apple Silicon 架构原生引擎";
+"about_version_desc" = "版本 1.0.0 · Apple Silicon 架构原生引擎";
 "about_sip_desc" = "100% 开启 SIP (System Integrity Protection) · 零 KEXT 内核扩展";
+"third_party_group_title" = "开源组件与第三方库";
+"third_party_group_subtitle" = "THLNTFS 基于以下卓越的开源项目构建，以独立进程或隔离沙箱形式运行，严格遵循各自开源许可证：";
+"view_license_file" = "查看第三方许可证声明文件";
 
 /* 偏好设置 - 常规选项卡 */
 "system_integration_group" = "系统集成与开机启动";

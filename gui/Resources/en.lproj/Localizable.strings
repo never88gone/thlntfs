@@ -249,8 +249,11 @@
 "diag_btn_running" = "Diagnosing...";
 "about_group_title" = "About THLNTFS";
 "about_app_name" = "THLNTFS for Mac";
-"about_version_desc" = "Version 1.2.0 · Apple Silicon Native Engine";
+"about_version_desc" = "Version 1.0.0 · Apple Silicon Native Engine";
 "about_sip_desc" = "100% SIP Enabled (System Integrity Protection) · Zero KEXT";
+"third_party_group_title" = "Third-Party Open Source Libraries";
+"third_party_group_subtitle" = "THLNTFS is built upon the following exceptional open-source projects, running as isolated processes or microVM sandboxes under their respective licenses:";
+"view_license_file" = "View Third-Party License Notices";
 
 /* Preferences - General Tab */
 "system_integration_group" = "System Integration & Startup";

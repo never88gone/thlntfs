@@ -251,6 +251,8 @@ SWIFT
     echo "package-app: HARD-STOP — failed to copy localization lproj resources" >&2
     exit 1
   fi
+  cp "$REPO_ROOT/THIRD_PARTY_LICENSES.md" "$APP/Contents/Resources/THIRD_PARTY_LICENSES.md" || true
+  cp "$REPO_ROOT/LICENSE.md" "$APP/Contents/Resources/LICENSE.md" || true
   if ! cp "$helper_bin" "$APP/Contents/Library/LaunchServices/$helper_label"; then
     echo "package-app: HARD-STOP — failed to copy $helper_bin" >&2
     exit 1

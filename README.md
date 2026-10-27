@@ -79,6 +79,25 @@ THLNTFS 采用现代轻量硬件隔离架构，所有文件系统驱动均运行
 
 ---
 
+## 🧱 第三方开源库 (Third-Party Libraries)
+
+THLNTFS 基于以下开源组件构建，以独立子进程或隔离微虚拟机沙箱形式安全调度，遵循各自开源许可证：
+
+| 组件名称 | 许可协议 | 用途说明 |
+| :--- | :--- | :--- |
+| **[anylinuxfs](https://github.com/nohajc/anylinuxfs)** | GPL-3.0 | 宿主端微虚拟机挂载与文件系统调度引擎 |
+| **[Linux Kernel (libkrunfw)](https://github.com/nohajc/libkrunfw)** | GPL-2.0 | 定制极简 ARM64 虚拟化内核，内置 NTFS-3G 驱动引擎 |
+| **[libkrun](https://github.com/containers/libkrun)** | Apache-2.0 | 轻量 MicroVM 虚拟机运行时，提供硬件级独立安全隔离 |
+| **[vmnet-helper](https://github.com/nirs/vmnet-helper)** | Apache-2.0 | Apple 虚拟机网络特权网桥辅助程序 |
+| **[gvproxy](https://github.com/containers/gvisor-tap-vsock)** | Apache-2.0 | 虚拟网络与 VSOCK 隧道高速代理 |
+| **[Alpine Linux](https://alpinelinux.org)** | Mixed | 极简客机用户态基础镜像，提供存储检查与维护工具 |
+
+在 App 内部亦可随时查阅：进入 **偏好设置** -> **诊断与关于** -> **开源组件与第三方库** 即可浏览详细清单、跳转上游主页或查阅许可证声明。
+
+完整许可声明与版权说明详见 [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md)。
+
+---
+
 ## 📄 开源许可
 
 本项目遵循 [GPL-2.0](LICENSE.md) 开源协议。

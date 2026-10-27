@@ -44,6 +44,6 @@ public struct MainPreferencesWindowView: View {
                     Label(L10n.diagnosticsAbout(isChinese: settings.isChinese), systemImage: "info.circle")
                 }
         }
-        .frame(width: 580, height: 480)
+        .frame(width: 580, height: 530)
     }
 }
