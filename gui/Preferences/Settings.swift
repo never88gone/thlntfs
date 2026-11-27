@@ -97,6 +97,9 @@ public final class Settings: ObservableObject {
     @Published public var openFinderOnMount: Bool {
         didSet { defaults.set(openFinderOnMount, forKey: Keys.openFinderOnMount) }
     }
+    @Published public var autoCheckForUpdates: Bool {
+        didSet { defaults.set(autoCheckForUpdates, forKey: Keys.autoCheckForUpdates) }
+    }
 
     @Published public private(set) var isUpdatingLaunchAtLogin = false
     @Published public private(set) var launchAtLoginMessage: String?
@@ -122,6 +125,7 @@ public final class Settings: ObservableObject {
         self.autoMountNewDrives = defaults.object(forKey: Keys.autoMountNewDrives) as? Bool ?? true
         self.notificationsEnabled = defaults.object(forKey: Keys.notificationsEnabled) as? Bool ?? true
         self.openFinderOnMount = defaults.object(forKey: Keys.openFinderOnMount) as? Bool ?? true
+        self.autoCheckForUpdates = defaults.object(forKey: Keys.autoCheckForUpdates) as? Bool ?? Defaults.autoCheckForUpdates
 
         var persistedLang = defaults.string(forKey: Keys.language)
         if persistedLang == nil && defaults == .standard && Bundle.main.bundleIdentifier == nil {
@@ -303,6 +307,7 @@ public final class Settings: ObservableObject {
         public static let autoMountNewDrives = true
         public static let notificationsEnabled = true
         public static let openFinderOnMount = true
+        public static let autoCheckForUpdates = true
     }
 
     private enum Keys {
@@ -311,5 +316,6 @@ public final class Settings: ObservableObject {
         static let autoMountNewDrives = "\(AppIdentifiers.settingsKeyPrefix).autoMountNewDrives"
         static let notificationsEnabled = "\(AppIdentifiers.settingsKeyPrefix).notificationsEnabled"
         static let openFinderOnMount = "\(AppIdentifiers.settingsKeyPrefix).openFinderOnMount"
+        static let autoCheckForUpdates = "\(AppIdentifiers.settingsKeyPrefix).autoCheckForUpdates"
     }
 }

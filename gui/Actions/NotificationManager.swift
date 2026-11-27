@@ -109,4 +109,13 @@ public final class NotificationManager: ObservableObject {
             body: L10n.tr("notify_error_body", volumeLabel, error)
         )
     }
+
+    /// 发送发现新版本升级提醒通知
+    public func postUpdateAvailable(version: String) {
+        postNotification(
+            prefix: "thlntfs_update",
+            title: L10n.tr("notify_update_title"),
+            body: L10n.tr("notify_update_body", version)
+        )
+    }
 }

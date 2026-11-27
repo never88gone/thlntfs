@@ -6,17 +6,20 @@ public struct MainPreferencesWindowView: View {
     @ObservedObject public var helperInstaller: HelperInstaller
     @ObservedObject public var helperUninstaller: HelperUninstaller
     @ObservedObject public var diagnoseRunner: DiagnoseRunner
+    @ObservedObject public var updateChecker: UpdateChecker
 
     public init(
         settings: Settings,
         helperInstaller: HelperInstaller,
         helperUninstaller: HelperUninstaller,
-        diagnoseRunner: DiagnoseRunner = DiagnoseRunner()
+        diagnoseRunner: DiagnoseRunner = DiagnoseRunner(),
+        updateChecker: UpdateChecker = UpdateChecker()
     ) {
         self.settings = settings
         self.helperInstaller = helperInstaller
         self.helperUninstaller = helperUninstaller
         self.diagnoseRunner = diagnoseRunner
+        self.updateChecker = updateChecker
     }
 
     public var body: some View {
@@ -39,10 +42,14 @@ public struct MainPreferencesWindowView: View {
                 Label(L10n.securityIsolation(isChinese: settings.isChinese), systemImage: "lock.shield.fill")
             }
 
-            DiagnosticsAboutTab(diagnoseRunner: diagnoseRunner)
-                .tabItem {
-                    Label(L10n.diagnosticsAbout(isChinese: settings.isChinese), systemImage: "info.circle")
-                }
+            DiagnosticsAboutTab(
+                diagnoseRunner: diagnoseRunner,
+                updateChecker: updateChecker,
+                settings: settings
+            )
+            .tabItem {
+                Label(L10n.diagnosticsAbout(isChinese: settings.isChinese), systemImage: "info.circle")
+            }
         }
         .frame(width: 580, height: 530)
     }

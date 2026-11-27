@@ -43,6 +43,7 @@ struct THLNTFSApp: App {
     @StateObject private var startupManager = StartupDiskManager()
     @StateObject private var autoMountManager = AutoMountManager()
     @StateObject private var notificationManager = NotificationManager()
+    @StateObject private var updateChecker = UpdateChecker()
 
     private let finderOpener = FinderOpener()
     private let helperClient = HelperClient()
@@ -95,7 +96,8 @@ struct THLNTFSApp: App {
                 startupManager: startupManager,
                 helperInstaller: helperInstaller,
                 settings: settings,
-                finderOpener: finderOpener
+                finderOpener: finderOpener,
+                updateChecker: updateChecker
             )
             .environment(\.locale, settings.effectiveLocale)
         }
@@ -107,7 +109,8 @@ struct THLNTFSApp: App {
                 settings: settings,
                 helperInstaller: helperInstaller,
                 helperUninstaller: helperUninstaller,
-                diagnoseRunner: diagnoseRunner
+                diagnoseRunner: diagnoseRunner,
+                updateChecker: updateChecker
             )
             .environment(\.locale, settings.effectiveLocale)
         }
@@ -128,7 +131,8 @@ struct THLNTFSApp: App {
                 settings: settings,
                 finderOpener: finderOpener,
                 helperClient: helperClient,
-                navigation: navigation
+                navigation: navigation,
+                updateChecker: updateChecker
             )
             .popoverGlassBackground()
             .environment(\.locale, settings.effectiveLocale)
@@ -139,6 +143,11 @@ struct THLNTFSApp: App {
                     notificationManager.requestAuthorization()
                     driveScanner.startPolling()
                     mountController.startPolling { driveScanner.drives }
+                    try? await Task.sleep(for: .seconds(2))
+                    await updateChecker.checkInBackgroundIfNeeded(
+                        autoCheckEnabled: settings.autoCheckForUpdates,
+                        notificationManager: settings.notificationsEnabled ? notificationManager : nil
+                    )
                 }
                 .onChange(of: driveScanner.drives) { newDrives in
                     autoMountManager.handleDiscoveredDrives(

@@ -250,10 +250,35 @@
 "about_group_title" = "About THLNTFS";
 "about_app_name" = "THLNTFS for Mac";
 "about_version_desc" = "Version 1.0.0 · Apple Silicon Native Engine";
+"about_version_desc_format" = "Version %@ · Apple Silicon Native Engine";
 "about_sip_desc" = "100% SIP Enabled (System Integrity Protection) · Zero KEXT";
 "third_party_group_title" = "Third-Party Open Source Libraries";
 "third_party_group_subtitle" = "THLNTFS is built upon the following exceptional open-source projects, running as isolated processes or microVM sandboxes under their respective licenses:";
 "view_license_file" = "View Third-Party License Notices";
+
+/* Software Update */
+"update_group_title" = "Software Updates";
+"update_auto_check_title" = "Automatically Check for Updates";
+"update_auto_check_sub" = "Silently checks GitHub Releases on launch and notifies when a new version arrives";
+"update_btn_check" = "Check for Updates";
+"update_btn_checking" = "Checking…";
+"update_btn_upgrade" = "Update";
+"update_btn_later" = "Later";
+"update_btn_skip_version" = "Skip This Version";
+"update_btn_view_github" = "View on GitHub";
+"update_btn_download_dmg" = "Download Latest DMG";
+"update_btn_go_download" = "Go to Download";
+"update_status_up_to_date" = "You are up to date (v%@)";
+"update_status_available" = "New version v%@ is available";
+"update_status_failed" = "Update check failed: %@";
+"update_banner_title" = "Update Available: v%@";
+"update_banner_subtitle" = "Current v%@ — upgrade recommended";
+"update_sheet_title" = "A New Version of THLNTFS Is Available";
+"update_sheet_versions" = "Latest v%@ (Current v%@)";
+"update_release_notes_title" = "Release Notes";
+"update_release_notes_empty" = "No release notes provided. Click below to download the latest DMG or view details on GitHub.";
+"notify_update_title" = "THLNTFS Update Available";
+"notify_update_body" = "Version v%@ is now available on GitHub. Open THLNTFS to upgrade.";
 
 /* Preferences - General Tab */
 "system_integration_group" = "System Integration & Startup";

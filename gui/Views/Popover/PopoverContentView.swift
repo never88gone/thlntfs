@@ -27,6 +27,7 @@ public struct PopoverContentView: View {
     @ObservedObject public var cliInstallChecker: CLIInstallChecker
     @ObservedObject public var cliAutoStager: CLIAutoStager
     @ObservedObject public var settings: Settings
+    @ObservedObject public var updateChecker: UpdateChecker
     @StateObject private var navigation: PopoverNavigation
     public let finderOpener: FinderOpener
     public let helperClient: HelperClient
@@ -50,7 +51,8 @@ public struct PopoverContentView: View {
         settings: Settings,
         finderOpener: FinderOpener,
         helperClient: HelperClient,
-        navigation: PopoverNavigation
+        navigation: PopoverNavigation,
+        updateChecker: UpdateChecker = UpdateChecker()
     ) {
         self.appState = appState
         self.driveScanner = driveScanner
@@ -65,6 +67,7 @@ public struct PopoverContentView: View {
         self.settings = settings
         self.finderOpener = finderOpener
         self.helperClient = helperClient
+        self.updateChecker = updateChecker
         _navigation = StateObject(wrappedValue: navigation)
     }
 
@@ -162,6 +165,11 @@ public struct PopoverContentView: View {
                 settings: settings,
                 onOpenMainWindow: openMainWindow
             )
+
+            UpdateBannerView(updateChecker: updateChecker, isChinese: settings.isChinese) {
+                openMainWindow()
+                updateChecker.presentUpdateDetails()
+            }
 
             if let mounted = mountController.mountedDrive {
                 DirtyBannerView(appState: appState, remountController: remountController, drive: mounted)

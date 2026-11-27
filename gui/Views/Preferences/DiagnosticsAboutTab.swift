@@ -4,6 +4,8 @@ import AppKit
 /// 偏好设置 - 系统诊断与关于选项卡
 public struct DiagnosticsAboutTab: View {
     @ObservedObject public var diagnoseRunner: DiagnoseRunner
+    @ObservedObject public var updateChecker: UpdateChecker
+    @ObservedObject public var settings: Settings
     @State private var showingExportSuccess: Bool = false
     @Environment(\.locale) private var locale
 
@@ -71,8 +73,14 @@ public struct DiagnosticsAboutTab: View {
         ),
     ]
 
-    public init(diagnoseRunner: DiagnoseRunner) {
+    public init(
+        diagnoseRunner: DiagnoseRunner,
+        updateChecker: UpdateChecker = UpdateChecker(),
+        settings: Settings = Settings()
+    ) {
         self.diagnoseRunner = diagnoseRunner
+        self.updateChecker = updateChecker
+        self.settings = settings
     }
 
     public var body: some View {
@@ -121,38 +129,70 @@ public struct DiagnosticsAboutTab: View {
                     }
                 }
 
-                // 产品关于信息
+                // 产品关于信息与版本检查
                 settingGroup(title: L10n.tr("about_group_title", isChinese: isChinese), icon: "info.circle.fill") {
-                    HStack(spacing: 16) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                .fill(Color.ntfsBlue.opacity(0.12))
-                                .frame(width: 56, height: 56)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                        .stroke(Color.ntfsBlue.opacity(0.25), lineWidth: 1)
-                                 )
-                            Image(systemName: "externaldrive.badge.checkmark")
-                                .font(.system(size: 28))
-                                .foregroundColor(Color.ntfsBlue)
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack(spacing: 16) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                    .fill(Color.ntfsBlue.opacity(0.12))
+                                    .frame(width: 56, height: 56)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                            .stroke(Color.ntfsBlue.opacity(0.25), lineWidth: 1)
+                                     )
+                                Image(systemName: "externaldrive.badge.checkmark")
+                                    .font(.system(size: 28))
+                                    .foregroundColor(Color.ntfsBlue)
+                            }
+
+                            VStack(alignment: .leading, spacing: 3) {
+                                Text(L10n.tr("about_app_name", isChinese: isChinese))
+                                    .font(.system(size: 15, weight: .bold))
+                                Text(L10n.tr("about_version_desc_format", updateChecker.currentVersion, isChinese: isChinese))
+                                    .font(.system(size: 11))
+                                    .foregroundColor(.secondary)
+
+                                HStack(spacing: 4) {
+                                    Image(systemName: "checkmark.seal.fill")
+                                        .font(.system(size: 11))
+                                        .foregroundColor(Color.ntfsGreen)
+                                    Text(L10n.tr("about_sip_desc", isChinese: isChinese))
+                                        .font(.system(size: 10.5, weight: .medium))
+                                        .foregroundColor(Color.ntfsGreen)
+                                }
+                            }
+
+                            Spacer()
+
+                            Button {
+                                Task { await updateChecker.checkForUpdates(userInitiated: true) }
+                            } label: {
+                                if case .checking = updateChecker.state {
+                                    Text(L10n.tr("update_btn_checking", isChinese: isChinese))
+                                } else {
+                                    Text(L10n.tr("update_btn_check", isChinese: isChinese))
+                                }
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(Color.ntfsBlue)
+                            .disabled(updateChecker.state == .checking)
                         }
 
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text(L10n.tr("about_app_name", isChinese: isChinese))
-                                .font(.system(size: 15, weight: .bold))
-                            Text(L10n.tr("about_version_desc", isChinese: isChinese))
-                                .font(.system(size: 11))
-                                .foregroundColor(.secondary)
+                        updateStatusRow
 
-                            HStack(spacing: 4) {
-                                Image(systemName: "checkmark.seal.fill")
-                                    .font(.system(size: 11))
-                                    .foregroundColor(Color.ntfsGreen)
-                                Text(L10n.tr("about_sip_desc", isChinese: isChinese))
-                                    .font(.system(size: 10.5, weight: .medium))
-                                    .foregroundColor(Color.ntfsGreen)
+                        Divider()
+
+                        Toggle(isOn: $settings.autoCheckForUpdates) {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(L10n.tr("update_auto_check_title", isChinese: isChinese))
+                                    .font(.system(size: 12, weight: .medium))
+                                Text(L10n.tr("update_auto_check_sub", isChinese: isChinese))
+                                    .font(.system(size: 10.5))
+                                    .foregroundColor(.secondary)
                             }
                         }
+                        .toggleStyle(.switch)
                     }
                 }
 
@@ -190,6 +230,62 @@ public struct DiagnosticsAboutTab: View {
             .padding(20)
         }
         .background(Color.ntfsMainBackground)
+        .sheet(isPresented: $updateChecker.isPresentingUpdateSheet) {
+            UpdateSheetView(updateChecker: updateChecker, isChinese: isChinese)
+        }
+    }
+
+    @ViewBuilder
+    private var updateStatusRow: some View {
+        switch updateChecker.state {
+        case .idle, .checking:
+            EmptyView()
+        case .upToDate(let version):
+            HStack(spacing: 6) {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(Color.ntfsGreen)
+                Text(L10n.tr("update_status_up_to_date", version, isChinese: isChinese))
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.ntfsSecondaryBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+        case .updateAvailable(let info):
+            HStack(spacing: 8) {
+                Image(systemName: "arrow.down.circle.fill")
+                    .foregroundColor(Color.ntfsBlue)
+                Text(L10n.tr("update_status_available", info.version, isChinese: isChinese))
+                    .font(.system(size: 11, weight: .medium))
+                Spacer()
+                Button(L10n.tr("update_btn_upgrade", isChinese: isChinese)) {
+                    updateChecker.presentUpdateDetails()
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Color.ntfsBlue)
+                .controlSize(.small)
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(Color.ntfsBlue.opacity(0.10))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+        case .failed(let message):
+            HStack(spacing: 6) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundColor(Color.ntfsOrange)
+                Text(L10n.tr("update_status_failed", message, isChinese: isChinese))
+                    .font(.system(size: 11))
+                    .foregroundColor(.secondary)
+                    .lineLimit(2)
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.ntfsSecondaryBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+        }
     }
 
     private func libraryRow(_ lib: OpenSourceLib) -> some View {

@@ -11,6 +11,7 @@ public struct MainWindowView: View {
     @ObservedObject public var startupManager: StartupDiskManager
     @ObservedObject public var helperInstaller: HelperInstaller
     @ObservedObject public var settings: Settings
+    @ObservedObject public var updateChecker: UpdateChecker
     public var finderOpener: FinderOpener
 
     @State private var partitions: [DiskPartition] = []
@@ -26,7 +27,8 @@ public struct MainWindowView: View {
         startupManager: StartupDiskManager = StartupDiskManager(),
         helperInstaller: HelperInstaller,
         settings: Settings,
-        finderOpener: FinderOpener = FinderOpener()
+        finderOpener: FinderOpener = FinderOpener(),
+        updateChecker: UpdateChecker = UpdateChecker()
     ) {
         self.appState = appState
         self.driveScanner = driveScanner
@@ -37,6 +39,7 @@ public struct MainWindowView: View {
         self.helperInstaller = helperInstaller
         self.settings = settings
         self.finderOpener = finderOpener
+        self.updateChecker = updateChecker
     }
 
     public var body: some View {
@@ -56,24 +59,39 @@ public struct MainWindowView: View {
             )
             .navigationSplitViewColumnWidth(min: 250, ideal: 280, max: 340)
         } detail: {
-            if let selectedIndex = partitions.firstIndex(where: { $0.id == selectedPartitionId }) {
-                VolumeDetailView(
-                    partition: $partitions[selectedIndex],
-                    diskOpController: diskOpController,
-                    startupManager: startupManager,
-                    onMount: {
-                        handleMount(partition: partitions[selectedIndex])
-                    },
-                    onUnmount: {
-                        handleUnmount(partition: partitions[selectedIndex])
-                    },
-                    onOpenFinder: {
-                        handleOpenFinder(partition: partitions[selectedIndex])
+            VStack(spacing: 0) {
+                if updateChecker.shouldShowBanner, updateChecker.availableUpdate != nil {
+                    UpdateBannerView(updateChecker: updateChecker, isChinese: settings.isChinese) {
+                        updateChecker.presentUpdateDetails()
                     }
-                )
-            } else {
-                emptySelectionView
+                    .padding(.horizontal, 16)
+                    .padding(.top, 10)
+                    .padding(.bottom, 4)
+                    .background(Color.ntfsMainBackground)
+                }
+
+                if let selectedIndex = partitions.firstIndex(where: { $0.id == selectedPartitionId }) {
+                    VolumeDetailView(
+                        partition: $partitions[selectedIndex],
+                        diskOpController: diskOpController,
+                        startupManager: startupManager,
+                        onMount: {
+                            handleMount(partition: partitions[selectedIndex])
+                        },
+                        onUnmount: {
+                            handleUnmount(partition: partitions[selectedIndex])
+                        },
+                        onOpenFinder: {
+                            handleOpenFinder(partition: partitions[selectedIndex])
+                        }
+                    )
+                } else {
+                    emptySelectionView
+                }
             }
+        }
+        .sheet(isPresented: $updateChecker.isPresentingUpdateSheet) {
+            UpdateSheetView(updateChecker: updateChecker, isChinese: settings.isChinese)
         }
         .frame(minWidth: 880, minHeight: 580)
         .onAppear {
